@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    run:
+        container_name: phoenix-postgres
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - '5500:5432'
+        image: postgres
