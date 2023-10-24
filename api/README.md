@@ -22,10 +22,8 @@ This is a time management web application built with Elixir and Phoenix. It offe
 
  POST /working-time => Creates a new working time entry.
 
-API Responses
-Responses are returned in JSON format.
 
-To start your Phoenix server:
+## To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
