@@ -1,4 +1,29 @@
-# Api
+
+## Elixir Phoenix Time Manager
+
+This is a time management web application built with Elixir and Phoenix. It offers four main routes: /users, /clock, /working-time, supporting GET, POST, and DELETE requests.
+
+# Routes
+ * 1 . /users
+   
+ GET /users => Retrieves a list of users.
+ 
+ POST /users => Creates a new user.
+
+ DELETE /users/:id => Deletes a user by ID.
+
+ * 2 . /clock
+  
+ GET /clock => Retrieves the current time.
+
+ * 3 . /working-time
+   
+ GET /working-time/:user_id => Retrieves working time for a specific user.
+
+ POST /working-time => Creates a new working time entry.
+
+API Responses
+Responses are returned in JSON format.
 
 To start your Phoenix server:
 
