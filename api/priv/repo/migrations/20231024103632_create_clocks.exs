@@ -5,12 +5,12 @@ defmodule Api.Repo.Migrations.CreateClocks do
     create table(:clocks, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :time, :utc_datetime
-      add :status, :boolean, default: true
-      add :user_id, references(:users, type: :binary_id, on_delete: :delete_all)
+      add :status, :boolean, default: false, null: false
+      add :user, references(:users, on_delete: :nothing, type: :binary_id)
 
       timestamps()
     end
 
-    create unique_index(:clocks, [:time, :user_id])
+    create index(:clocks, [:user])
   end
 end

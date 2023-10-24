@@ -21,6 +21,7 @@ defmodule Api.MixProject do
     [
       mod: {Api.Application, []},
       extra_applications: [:logger, :runtime_tools]
+
     ]
   end
 
