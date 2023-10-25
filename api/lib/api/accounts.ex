@@ -21,23 +21,20 @@ defmodule Api.Accounts do
     Repo.all(User)
   end
 
-  def list_users(%{} = filters) do
-    query = from(u in User)
-
+  def list_users(%{email: email, username: username}) do
     query =
-      case filters do
-        %{email: email} ->
-          query |> where([u], u.email == ^email)
-
-        %{username: username} ->
-          query |> where([u], u.username == ^username)
-
-        _ ->
-          query
-      end
-
+      from(u in User,
+        where: u.email == ^email and u.username == ^username
+      )
     Repo.all(query)
   end
+
+  def list_users(_filters) do
+    # Si les deux filtres ne sont pas fournis, ou si un seul des deux est fourni,
+    # cette fonction renvoie une liste vide.
+    []
+  end
+
   @doc """
   Gets a single user.
 

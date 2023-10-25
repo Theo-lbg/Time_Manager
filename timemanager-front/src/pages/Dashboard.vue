@@ -1,11 +1,18 @@
 <template>
     <div>
         <User/>
-        <Login/>
     </div>
 </template>
 <script setup lang="ts">
 import User from "@/components/User.vue";
-import Login from "@/components/Login.vue";
+import { ref, onBeforeMount } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+onBeforeMount(() => {
+  if (!localStorage.getItem('id')) {
+    router.push('/login');
+  }
+});
 </script>

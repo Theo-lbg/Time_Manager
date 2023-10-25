@@ -1,5 +1,5 @@
 <template>
     <div>
-        wouhou
+        User
     </div>
 </template>

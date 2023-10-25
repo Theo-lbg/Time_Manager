@@ -12,8 +12,16 @@ defmodule ApiWeb.UserController do
     username = Map.get(query_params, "username")
 
     users = Accounts.list_users(%{email: email, username: username})
-    render(conn, "index.json", users: users)
+
+    if Enum.empty?(users) do
+      conn
+      |> put_status(401)
+      |> json(%{error: "Aucun utilisateur trouvé"})
+    else
+      render(conn, "index.json", users: users)
+    end
   end
+
 
 
   def create(conn, %{"user" => user_params}) do
