@@ -7,9 +7,14 @@ defmodule ApiWeb.UserController do
   action_fallback ApiWeb.FallbackController
 
   def index(conn, _params) do
-    users = Accounts.list_users()
+    query_params = conn.query_params
+    email = Map.get(query_params, "email")
+    username = Map.get(query_params, "username")
+
+    users = Accounts.list_users(%{email: email, username: username})
     render(conn, "index.json", users: users)
   end
+
 
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do

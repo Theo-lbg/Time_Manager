@@ -10,7 +10,7 @@ defmodule ApiWeb.Router do
   scope "/api", ApiWeb do
     pipe_through :api
 
-    resources "/users", UserController
+    resources "/users", UserController, except: [:new, :edit]
     resources "/clocks/:userID", ClockController, only: [:create]
     get "/clocks/:userID", ClockController, :show
     get "/workingtimes/:userID", WorkingTimeController, :index
