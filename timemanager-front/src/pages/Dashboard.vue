@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import User from "@/components/User.vue";
 import { ref, onBeforeMount } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter();
 

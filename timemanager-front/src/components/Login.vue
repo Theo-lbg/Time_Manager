@@ -14,23 +14,25 @@
             <button type="submit" class="button-secondary">Se connecter</button>
         </div>
     </form>
+    <button @click="goToRegister" class="button-primary">Pas encore inscrit ? S'inscrire</button>
 </template>
 
 <script setup lang="ts">
 import * as Vue from 'vue'
-import { ref, onMounted } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import axios from 'axios'
 import { useRoute, useRouter } from 'vue-router'
-import { useUserStore } from '../store/user.ts'
 
 
-const userStore = useUserStore()
 const username = ref('')
 const email = ref('')
 const router = useRouter()
 const route = useRoute()
-const user = ref(null)
 
+
+const goToRegister = () => {
+    router.push('/register');
+}
 
 async function login() {
     try {
