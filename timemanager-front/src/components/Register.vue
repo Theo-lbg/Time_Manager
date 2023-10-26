@@ -2,7 +2,7 @@
     <div class="card h-full w-full p-8">
         <h1 class="flex justify-center text-primary mb-6">
             Créer un compte</h1>
-        <form @submit.prevent="register">
+        <form @submit.prevent="createUser">
             <div class="mb-6">
                 <label for="login" class="block text-lg font-semibold mb-2">Pseudonyme</label>
                 <input v-model="login" type="text" id="login"
@@ -30,7 +30,7 @@ const router = useRouter()
 const login = ref('')
 const email = ref('')
 
-async function register() {
+async function createUser() {
     try {
         const user = {
             username: login.value,

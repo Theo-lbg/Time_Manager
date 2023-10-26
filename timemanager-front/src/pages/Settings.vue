@@ -1,10 +1,10 @@
 <template>
     <div> 
-        <User/>
+        <Settings/>
     </div>
 </template>
 <script setup lang="ts">
-import User from "@/components/User.vue";
+import Settings from "@/components/Settings.vue";
 import { ref, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 

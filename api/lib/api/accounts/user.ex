@@ -16,5 +16,6 @@ defmodule Api.Accounts.User do
     user
     |> cast(attrs, [:username, :email])
     |> validate_required([:username, :email])
+    |> unique_constraint(:email)
   end
 end
