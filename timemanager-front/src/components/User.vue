@@ -38,7 +38,6 @@ async function deleteUser() {
   try {
     const response = await axios.delete(`http://localhost:4000/api/users/${localStorage.getItem("id")}`);
     if (response.status === 204) {
-      console.log("COUCOU")
       logout();
       router.push("/login")
     } else {

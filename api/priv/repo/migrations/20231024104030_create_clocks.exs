@@ -4,8 +4,8 @@ defmodule Api.Repo.Migrations.CreateClocks do
   def change do
     create table(:clocks, primary_key: false) do
       add :id, :binary_id, primary_key: true
+      add :status, :boolean, default: false
       add :time, :utc_datetime
-      add :status, :boolean, default: false, null: false
       add :user, references(:users, on_delete: :nothing, type: :binary_id)
 
       timestamps()
