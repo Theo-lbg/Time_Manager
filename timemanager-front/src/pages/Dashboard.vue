@@ -1,10 +1,12 @@
 <template>
     <div> 
         <User/>
+        <WorkingTime/>
     </div>
 </template>
 <script setup lang="ts">
 import User from "@/components/User.vue";
+import WorkingTime from "@/components/WorkingTime.vue";
 import { ref, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 

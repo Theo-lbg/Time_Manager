@@ -6,7 +6,7 @@ defmodule Api.Accounts.WorkingTime do
   @foreign_key_type :binary_id
   schema "working_times" do
     field :start, :utc_datetime
-    field :end, :utc_datetime, default: nil
+    field :end, :utc_datetime
     field :user, :binary_id
 
     timestamps()
@@ -16,6 +16,6 @@ defmodule Api.Accounts.WorkingTime do
   def changeset(working_time, attrs) do
     working_time
     |> cast(attrs, [:start, :end, :user])
-    |> validate_required([:start, :user])
+    |> validate_required([:start, :end, :user])
   end
 end
