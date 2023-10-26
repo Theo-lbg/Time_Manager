@@ -10,8 +10,12 @@ defmodule ApiWeb.UserController do
     query_params = conn.query_params
     email = Map.get(query_params, "email")
     username = Map.get(query_params, "username")
-
-    users = Accounts.list_users(%{email: email, username: username})
+    users =
+      if is_nil(email) and is_nil(username) do
+        Accounts.list_users()
+      else
+        Accounts.list_users(%{email: email, username: username})
+      end
 
     if Enum.empty?(users) do
       conn
@@ -24,7 +28,11 @@ defmodule ApiWeb.UserController do
 
 
 
+
   def create(conn, %{"user" => user_params}) do
+    role = Map.get(user_params, "role", "user")
+    user_params = Map.put_new(user_params, "role", role)
+
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn
       |> put_status(:created)
@@ -32,6 +40,7 @@ defmodule ApiWeb.UserController do
       |> render("show.json", user: user)
     end
   end
+
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
