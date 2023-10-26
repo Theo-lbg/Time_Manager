@@ -27,9 +27,9 @@
                             Se connecter</button>
                     </div>
                 </form>
-                <a class="font-montserrat">Vous avez déjà un compte ? </a><button @click="goToRegister"
+                <a class="font-montserrat">Vous n'êtes pas encore inscrit ? </a><button @click="goToRegister"
                     class=" font-montserrat button-primary font-bold">
-                    Connectez-vous !</button>
+                    S'inscrire</button>
             </div>
         </div>
     </div>

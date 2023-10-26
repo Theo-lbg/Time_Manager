@@ -23,9 +23,9 @@
                         <button type="submit"
                             class="button-secondary font-montserrat bg-secondary hover:bg-black text-white font-bold py-2 px-4 rounded-full ">S'inscrire</button>
                     </div>
-                    <a class="font-montserrat">Pas encore inscrit ? </a><button @click="goToLogin"
+                    <a class="font-montserrat">Déjà un compte ?</a><button @click="goToLogin"
                         class=" font-montserrat button-primary font-bold">
-                        S'inscrire</button>
+                        Se connecter</button>
                 </form>
             </div>
         </div>
