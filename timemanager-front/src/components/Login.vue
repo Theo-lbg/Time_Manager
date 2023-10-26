@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="login">
+    <form @submit.prevent="getUser">
         <div class="mb-6">
             <label for="username" class="block text-lg font-semibold mb-2">Nom d'utilisateur</label>
             <input v-model="username" type="text" id="username"
@@ -34,7 +34,7 @@ const goToRegister = () => {
     router.push('/register');
 }
 
-async function login() {
+async function getUser() {
     try {
         const response = await axios.get(`http://localhost:4000/api/users?email=${email.value}&username=${username.value}`)
         if (response.status === 200) {

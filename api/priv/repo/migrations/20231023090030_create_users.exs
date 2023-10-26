@@ -5,10 +5,11 @@ defmodule Api.Repo.Migrations.CreateUsers do
     create table(:users, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :username, :string
-      add :email, :string
+      add :email, :string, null: false
 
       timestamps()
     end
+    create unique_index(:users, [:email])
 
   end
 end
