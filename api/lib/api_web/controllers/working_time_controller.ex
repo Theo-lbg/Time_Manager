@@ -6,10 +6,23 @@ defmodule ApiWeb.WorkingTimeController do
 
   action_fallback ApiWeb.FallbackController
 
-  def index(conn, %{"userID" => user_id, "start" => start_date, "end" => end_date}) when is_binary(user_id) do
-    working_times = Accounts.find_working_times_by_user_and_date_range(user_id, start_date, end_date)
+  def index(conn, %{"userID" => user_id} = params) when is_binary(user_id) do
+    working_times =
+      case Map.fetch(params, "start") do
+        {:ok, start_date} ->
+          case Map.fetch(params, "end") do
+            {:ok, end_date} ->
+              Accounts.find_working_times_by_user_and_date_range(user_id, start_date, end_date)
+            :error ->
+              Accounts.find_all_working_times_by_user(user_id)
+          end
+        :error ->
+          Accounts.find_all_working_times_by_user(user_id)
+      end
+
     render(conn, "index.json", working_times: working_times)
   end
+
 
   def create(conn, %{"userID" => userID, "working_time" => workingtime_params}) do
     with {:ok, %WorkingTime{} = working_time} <- Accounts.create_working_time(Map.merge(%{"user" => userID}, workingtime_params)) do
