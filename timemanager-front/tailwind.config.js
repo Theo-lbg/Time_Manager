@@ -6,7 +6,9 @@ module.exports = {
       colors: {
         primary: '#EE74DA',
         secondary: '#403F4C',
-        ternary: '#51E5FF'
+        ternary: '#51E5FF',
+        quaternary: '#fafafa',
+        quinary: '#'
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Arial', 'sans-serif'],
