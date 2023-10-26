@@ -7,6 +7,8 @@ defmodule Api.Accounts.User do
   schema "users" do
     field :username, :string
     field :email, :string
+    field :role, :string, default: "user"
+    field :team, :binary_id, default: nil
 
     timestamps()
   end
@@ -14,8 +16,7 @@ defmodule Api.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email])
+    |> cast(attrs, [:username, :email, :role, :team])
     |> validate_required([:username, :email])
-    |> unique_constraint(:email)
   end
 end

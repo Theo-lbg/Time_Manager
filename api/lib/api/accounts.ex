@@ -21,7 +21,7 @@ defmodule Api.Accounts do
     Repo.all(User)
   end
 
-  def list_users(%{email: email, username: username}) do
+  def list_users(%{email: email, username: username}) when is_map(%{email: email, username: username}) do
     query =
       from(u in User,
         where: u.email == ^email and u.username == ^username
@@ -29,11 +29,13 @@ defmodule Api.Accounts do
     Repo.all(query)
   end
 
-  def list_users(_filters) do
-    # Si les deux filtres ne sont pas fournis, ou si un seul des deux est fourni,
-    # cette fonction renvoie une liste vide.
+  def list_users(_filters) when is_map(_filters) do
+    # Si des filtres sont fournis, cette fonction sera utilisée.
+    # Vous pouvez ajouter un comportement différent ici si nécessaire.
     []
   end
+
+
 
   @doc """
   Gets a single user.
@@ -306,6 +308,25 @@ defmodule Api.Accounts do
   """
   def change_clock(%Clock{} = clock, attrs \\ %{}) do
     Clock.changeset(clock, attrs)
+  end
+
+  def get_last_user_clock(user_id) when is_binary(user_id) do
+    user = Repo.get(User, user_id)
+
+    case user do
+      %User{} = user ->
+        clocks_query =
+          from c in Clock,
+            where: c.user == ^user_id,
+            order_by: [desc: c.inserted_at],
+            limit: 1
+
+        last_clock = Repo.one(clocks_query)
+        last_clock
+
+      _ ->
+        nil
+    end
   end
 
   def get_user(user_id) when is_binary(user_id) do
