@@ -357,6 +357,14 @@ defmodule Api.Accounts do
     query = from(wt in WorkingTime, where: wt.user == ^userID and wt.id == ^id, select: wt)
     Repo.all(query)
   end
+  def find_all_working_times_by_user(user_id) do
+    query =
+      from(wt in Api.Accounts.WorkingTime,
+        where: wt.user == ^user_id
+      )
+
+    Repo.all(query)
+  end
 
 
 end
