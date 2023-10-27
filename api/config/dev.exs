@@ -3,9 +3,10 @@ use Mix.Config
 # Configure your database
 config :api, Api.Repo,
   username: "postgres",
+  # y'a pas moyen de faire env.get('VARIABLE') ?
   password: "postgres",
   database: "api_dev",
-  hostname: "localhost",
+  hostname: "api-db",
   port: 5432,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -18,6 +19,7 @@ config :api, Api.Repo,
 # with webpack to recompile .js and .css sources.
 config :api, ApiWeb.Endpoint,
   http: [port: 4000],
+  # debug_errors: false # pour ne plus recevoir les erreurs en HTML au lieu de full JSON
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

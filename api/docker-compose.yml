@@ -1,0 +1,96 @@
+version: "3.3"
+services:
+  elixir-api:
+    container_name: elixir-api
+    build: .
+    environment:
+      # - POSTGRES_USER=${POSTGRES_USER}
+      # - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      # - POSTGRES_DB=${POSTGRES_DB}
+      # - POSTGRES_HOST=${POSTGRES_HOST}
+      # - POSTGRES_PORT=5432
+      # # - PGHOST=api-db
+      - PHX_HOST="0.0.0.0"
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+      # - ./deps:/elixir_api/deps
+      # - ./_build:/elixir_api/_build
+    depends_on:
+      - api-db
+
+  api-db:
+    container_name: api-db
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=api_dev
+    ports:
+      - 5432:5432
+    # volumes:
+    #   - ./volumes/api-db:/var/lib/postgresql/data
+# version: '3.3'
+# services:
+#   ghost:
+#     image: ghost:latest
+#     container_name: ${BLOG_CONTAINER_NAME}
+#     # ports:
+#     #   - 8084:2368
+#     environment:
+#       url: ${url}
+#       database__client: ${database__client}
+#       database__connection__host: ${database__connection__host}
+#       database__connection__user: ${database__connection__user}
+#       database__connection__password: ${database__connection__password}
+#       database__connection__database: ${database__connection__database}
+#       # Configuring SMTP
+#       # Mail
+#       mail__transport: ${mail__transport}
+#       # mail__from: staff@newsletter.self-made-man.fr
+#       # Options
+#       mail__options__service: ${mail__options__service}
+#       mail__options__host: ${mail__options__host}
+#       mail__options__port: ${mail__options__port}
+#       mail__options__secure: ${mail__options__secure}
+#       # Options.Auth
+#       mail__options__auth__user: ${mail__options__auth__user}
+#       mail__options__auth__pass: ${mail__options__auth__pass}
+#       #
+#       # mail.smtp.starttls.enable: true
+#       # mail.smtp.starttls.required: true
+#     volumes:
+#       - ${GHOST_FRONT_VOLUME_PATH}
+#     networks:
+#       - traefik
+#     restart: unless-stopped
+#     labels:
+#       - ${traefik_enable}
+#       # - "traefik.http.services.ghost.loadbalancer.server.port=80" # facultative (traefik will use the first exposed port by default)
+#       - ${traefik_http_routers_rule}
+#       - ${traefik_http_routers_entrypoints}
+#       - ${traefik_http_routers_tls_certresolver}
+#       # WatchTower auto update
+#       # TODO: Check for non interrupting update
+#       - ${watchtower}
+#     depends_on:
+#       - ghost_mysql
+
+#   ghost_mysql:
+#     image: mysql:8
+#     container_name: ${MYSQL_CONTAINER_NAME}
+#     environment:
+#       MYSQL_DATABASE: ${MYSQL_DATABASE}
+#       MYSQL_USER: ${MYSQL_USER}
+#       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#     volumes:
+#       - ${GHOST_MYSQL_VOLUME_PATH}
+#     networks:
+#       - traefik
+#     restart: unless-stopped
+
+# networks:
+#   traefik:
+#       name: traefik
+#       external: true
