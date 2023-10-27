@@ -56,16 +56,13 @@ async function getUser() {
     try {
         const response = await axios.get(`http://localhost:4000/api/users?email=${email.value}&username=${username.value}`)
         if (response.status === 200) {
-            console.log(response.data.data[0])
             localStorage.setItem("id", response.data.data[0].id)
             localStorage.setItem("email", response.data.data[0].email)
             localStorage.setItem("username", response.data.data[0].username)
             router.push('/');
         } else {
-            console.log("Erreur inattendue")
         }
     } catch (error) {
-        console.log(error.response.request.response)
         console.error(error)
     }
 }
