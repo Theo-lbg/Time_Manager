@@ -13,7 +13,8 @@ config :api,
 
 # Configures the endpoint
 config :api, ApiWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "0.0.0.0"],
+  adapter: Phoenix.Endpoint.Cowboy2Adapter,
   secret_key_base: "g3/masnRXP+Cn/93SUEme6jzM2GlK0mj2D52i2RycyrqIefK2roP6t4G3ms3wXNr",
   render_errors: [view: ApiWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Api.PubSub,
