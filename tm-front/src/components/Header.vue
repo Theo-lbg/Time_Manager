@@ -9,7 +9,7 @@
                     <RouterLink class="ml-5" to="/settings">Settings</RouterLink>
                 </li>
                 <li class="mx-2 flex items-center">
-                    <RouterLink class="ml-5" to="/workingtimes">Feuille de temps</RouterLink>
+                    <RouterLink :to="`/workingtimes/${userid}`">Feuille de temps</RouterLink>
                 </li>
                 <li class="mx-2 flex items-center">
                     <button @click="logoutUser">Déconnexion</button>
@@ -24,7 +24,7 @@ import { logout } from '@/assets/utils.js';
 import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
-
+let userid = localStorage.getItem("id")
 const logoutUser = () => {
   logout();
   router.push("/login")
