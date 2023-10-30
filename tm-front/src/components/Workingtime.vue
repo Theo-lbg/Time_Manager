@@ -90,7 +90,7 @@ async function getWorkingTime(userId, wtId) {
     const response = await axios.get(`http://localhost:4000/api/workingtimes/${userId}/${wtId}`);
     if (response.status === 200) {
       workData.value = response.data.data;
-      console.log(workData);
+      (workData);
     } else {
       console.error('La requête GET a échoué', response);
     }
@@ -105,7 +105,7 @@ async function deleteWorkingTime(id) {
   try {
     const response = await axios.delete(`http://localhost:4000/api/workingtimes/${id}`);
     if (response.status === 204) {
-      console.log('La suppression a réussi', response);
+      ('La suppression a réussi', response);
       await getWorkingTime(userId, workingTimeId);
       router.push(`/workingtimes/${userId}`);
     } else {
@@ -130,7 +130,7 @@ const updateWorkingTime = async () => {
     const response = await axios.put(`http://localhost:4000/api/workingtimes/${id}`, body);
 
     if (response.status === 200) {
-      console.log('La modification a réussi', response);
+      ('La modification a réussi', response);
       await getWorkingTime(userId, workingTimeId);
     } else {
       console.error('La modification a échoué', response);
@@ -149,7 +149,7 @@ const createWorkingTime = async () => {
     }};
     const response = await axios.post(`http://localhost:4000/api/workingtimes/${userId}`, newWorkingTimeData);
     if (response.status === 201) {
-      console.log('La création a réussi', response);
+      ('La création a réussi', response);
       router.push(`/workingtimes/${userId}`);
     } else {
       console.error('La création a échoué', response);
