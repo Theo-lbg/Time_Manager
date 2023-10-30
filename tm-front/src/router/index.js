@@ -4,6 +4,7 @@ import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import Settings from "../pages/Settings.vue";
 import WorkingTimes from "../pages/Workingtimes.vue";
+import WorkingTime from "../pages/Workingtime.vue"
 
 
 const router = createRouter({
@@ -30,9 +31,19 @@ const router = createRouter({
       component: Settings
     },
     {
-      path: '/workingtimes',
+      path: '/workingtimes/:userid',
       name: 'workingtimes',
       component: WorkingTimes
+    },
+    {
+      path: '/workingtime/:userid/:workingtimeid',
+      name: 'workingtime',
+      component: WorkingTime
+    },
+    {
+      path: '/workingtime/:userid/',
+      name: 'workingtimec',
+      component: WorkingTime
     },
   ]
 });

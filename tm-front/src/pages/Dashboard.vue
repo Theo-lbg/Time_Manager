@@ -6,7 +6,7 @@
 </template>
 <script setup >
 import User from "@/components/User.vue";
-import WorkingTime from "@/components/WorkingTime.vue";
+import WorkingTime from "@/components/Clock.vue";
 import { ref, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 
