@@ -1,11 +1,11 @@
 <template>
     <div>
-        <User/>
+        <ClockManager/>
     </div>
 </template>
 <script setup >
 import User from "@/components/User.vue";
-import WorkingTime from "@/components/ClockManager.vue";
+import ClockManager from "@/components/ClockManager.vue";
 import { ref, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 

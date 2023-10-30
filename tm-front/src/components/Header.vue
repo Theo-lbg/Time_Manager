@@ -12,6 +12,12 @@
                     <RouterLink :to="`/workingtimes/${userid}`">Feuille de temps</RouterLink>
                 </li>
                 <li class="mx-2 flex items-center">
+                    <RouterLink :to="`/clock/${userid}`">ClockManager</RouterLink>
+                </li>
+                <li class="mx-2 flex items-center">
+                    <RouterLink :to="`/workingtime/${userid}`">Créer un workingtime</RouterLink>
+                </li>
+                <li class="mx-2 flex items-center">
                     <button @click="logoutUser">Déconnexion</button>
                 </li>
             </div>

@@ -4,7 +4,8 @@ import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import Settings from "../pages/Settings.vue";
 import WorkingTimes from "../pages/Workingtimes.vue";
-import WorkingTime from "../pages/Workingtime.vue"
+import WorkingTime from "../pages/Workingtime.vue";
+import ClockManager from "../pages/ClockManager.vue";
 
 
 const router = createRouter({
@@ -12,7 +13,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'dashboard',
+      name: 'clockmanager',
       component: Dashboard
     },
     {
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/workingtime/:userid/',
       name: 'workingtimec',
       component: WorkingTime
+    },
+    {
+      path: '/clock/:userid',
+      name: 'clock',
+      component: ClockManager
     },
   ]
 });
