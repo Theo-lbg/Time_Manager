@@ -12,6 +12,6 @@ RUN mix deps.get
 # Copiez d'abord le projet
 COPY . .
 
-EXPOSE 4211
+EXPOSE 4000
 
 CMD ["mix", "phx.server"]
