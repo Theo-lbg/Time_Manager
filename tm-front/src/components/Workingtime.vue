@@ -90,7 +90,6 @@ async function getWorkingTime(userId, wtId) {
     const response = await axios.get(`http://localhost:4000/api/workingtimes/${userId}/${wtId}`);
     if (response.status === 200) {
       workData.value = response.data.data;
-      (workData);
     } else {
       console.error('La requête GET a échoué', response);
     }
