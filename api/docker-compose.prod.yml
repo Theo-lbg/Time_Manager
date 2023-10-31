@@ -1,7 +1,7 @@
 version: "3.3"
 services:
-  elixir-api:
-    container_name: elixir-api
+  time-manager-api:
+    container_name: time-manager-api
     build: .
     environment:
       # - POSTGRES_USER=${POSTGRES_USER}
@@ -11,20 +11,43 @@ services:
       # - POSTGRES_PORT=5432
       # # - PGHOST=api-db
       - PHX_HOST="0.0.0.0"
-    ports:
-      - 4000:4000
+    # ports:
+    #   - 4000:4000
     command: sh -c "mix ecto.migrate && mix phx.server"
+    labels:
+      - "traefik.enable=true"
+      # WEB
+      - "traefik.http.routers.time-manager-api.rule=Host(`api.pooger.epitech.musubi.dev`)"
+      - "traefik.http.routers.time-manager-api.entrypoints=web"
+      - "traefik.http.routers.time-manager-api.middlewares=https-redirect@file"
+
+      - "traefik.http.routers.time-manager-api-secure.rule=Host(`api.pooger.epitech.musubi.dev`)"
+      - "traefik.http.routers.time-manager-api-secure.entrypoints=websecure"
+      - "traefik.http.routers.time-manager-api-secure.tls=true"
+      - "traefik.http.routers.time-manager-api-secure.tls.certresolver=letsencryptresolver"
+
+      - "traefik.http.routers.time-manager-api-secure.service=time-manager-api"
+      - "traefik.http.services.time-manager-api.loadbalancer.server.port=4000"
+    networks:
+      - traefik
+      - internal
     volumes:
       - .:/app
     depends_on:
-      - api-db
+      - time-manager-api-db
 
-  api-db:
+  time-manager-api-db:
     container_name: api-db
     image: postgres:latest
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=api_dev
-    ports:
-      -
+    networks:
+      - internal
+
+networks:
+  traefik:
+    external: true
+  internal:
+    external: false
