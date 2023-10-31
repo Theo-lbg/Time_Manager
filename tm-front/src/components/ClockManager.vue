@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="start" v-if="trorfa">
+        <div class="start" v-if="clockIn">
             <div class="time">
                 Tu as commencé à pointer à : {{ lastClockData ? formatDateTime(lastClockData.time) : 'Heure de début' }}
             </div>
@@ -25,7 +25,7 @@ import { format } from 'date-fns';
 const router = useRouter();
 
 let clockData = null
-let trorfa = ref(false);
+let clockIn = ref(false);
 let lastClockData = ref([]);
 
 const formatDateTime = (datetime) => {
@@ -37,7 +37,7 @@ async function getClockData(userId) {
         const response = await axios.get(`http://localhost:4000/api/clocks/${userId}`);
         if (response.status === 200) {
             clockData = response.data;
-            trorfa.value = clockData.data[clockData.data.length - 1].status;
+            clockIn.value = clockData.data[clockData.data.length - 1].status;
             lastClockData = clockData.data[clockData.data.length - 1];
         } else {
             console.error("La requête GET a échoué", response);
@@ -61,8 +61,8 @@ async function clock() {
             });
 
             if (response.status === 201) {
-                trorfa.value = !trorfa.value;
-                if (trorfa.value == false) {
+                clockIn.value = !clockIn.value;
+                if (clockIn.value == false) {
                     const start = formatDateTime(lastClockData.time);
                     const end = formatDateTime(clock.time);
                     const workingTime = {
