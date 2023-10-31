@@ -48,3 +48,8 @@ Commande pour lancer l'API
 ```shell
 docker compose up --build
 ```
+
+WHALARADIM 
+supprimer mix.lock refaire un mix deps.get et lancer le build
+
+Au lancement du container phx faire un mix ecto.migrate
