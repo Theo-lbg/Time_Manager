@@ -1,13 +1,14 @@
 use Mix.Config
+env = System.get_env("ENV")
 
 # Configure your database
 config :api, Api.Repo,
-  username: "postgres",
-  # y'a pas moyen de faire env.get('VARIABLE') ?
-  password: "postgres",
-  database: "api_dev",
-  hostname: "api-db",
-  port: 5432,
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "b&>#?|V]H%5q(!QaY]A+6",
+  database: System.get_env("POSTGRES_DATABASE") || "time-manager",
+  hostname: System.get_env("POSTGRES_HOST") || "time-manager-db",
+  port: System.get_env("POSTGRES_PORT") || 5432,
+  stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
