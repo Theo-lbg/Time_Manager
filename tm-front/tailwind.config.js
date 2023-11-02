@@ -8,7 +8,7 @@ module.exports = {
         secondary: '#403F4C',
         ternary: '#51E5FF',
         quaternary: '#fafafa',
-        quinary: '#'
+        quinary: '#fafbf9'
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Arial', 'sans-serif'],

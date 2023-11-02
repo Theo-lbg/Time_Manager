@@ -8,19 +8,15 @@
             </div>
             <div class="hidden xl:block xl:w-auto mx-auto">
                 <ul class="flex justify-center">
-                    <li class="mr-12"><a class="ml-5 font-montserrat text-black hover:text-white">
-                            <RouterLink to="/">Dashboard</RouterLink>
-                        </a>
+                    <li class="mr-12 ml-5 font-montserrat text-black hover:text-white">
+                        <RouterLink to="/">Dashboard</RouterLink>
                     </li>
-                    <li class="mr-12"><a class="ml-5 font-montserrat text-black hover:text-white" to="/settings" href="#">
-                            <RouterLink to="/settings">Settings</RouterLink>
-                        </a>
+                    <li class="mr-12 ml-5 font-montserrat text-black hover:text-white">
+                        <RouterLink to="/settings">Settings</RouterLink>
                     </li>
-                    <li class="mr-12"><a class="ml-5 font-montserrat text-black hover:text-white"
-                            to="/workingtime/${userId}" href="#">
-                            <RouterLink :to="`/workingtimes/${userid}`">Feuille de temps
-                            </RouterLink>
-                        </a>
+                    <li class="mr-12 ml-5 font-montserrat text-black hover:text-white">
+                        <RouterLink :to="`/workingtimes/${userid}`">Feuille de temps
+                        </RouterLink>
                     </li>
                     <li class="mr-12 flex items-center ml-5 font-montserrat text-black hover:text-white">
                         <RouterLink :to="`/clock/${userid}`">ClockManager</RouterLink>

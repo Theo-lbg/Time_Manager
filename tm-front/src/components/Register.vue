@@ -1,6 +1,6 @@
 <template>
     <div class="h-full w-full flex">
-        <div class="w-1/2 ">
+        <div class="w-1/2 bg-quinary ">
             <img src="../assets/POOGER.png" alt="Pooger-img" class="object-contain h-screen ">
         </div>
         <div class="w-1/2 my-auto">
@@ -10,12 +10,13 @@
                 </h1>
                 <form @submit.prevent="createUser">
                     <div class="mb-6">
-                        <label for="login" class="block text-lg font-semibold mb-2">Pseudonyme</label>
+                        <label for="login" class="block text-lg font-semibold font-montserrat mb-2">Nom d'utilisateur
+                        </label>
                         <input v-model="login" type="text" id="login"
                             class="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-pastel-blue" />
                     </div>
                     <div class="mb-6">
-                        <label for="email" class="block text-lg font-semibold mb-2">Adresse e-mail</label>
+                        <label for="email" class="block text-lg font-semibold font-montserrat mb-2">Email</label>
                         <input v-model="email" type="email" id="email"
                             class="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-pastel-blue" />
                     </div>
@@ -36,6 +37,8 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
 const router = useRouter()
 
@@ -61,6 +64,7 @@ async function createUser() {
             // Handle error
         }
     } catch (error) {
+        createToast('Utilisateur déjà existant', { transition: 'slide', type: 'danger', timeout: 2000 })
         console.error(error)
     }
 }

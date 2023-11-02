@@ -1,23 +1,22 @@
 <template>
     <div class="h-full w-full flex">
-        <div class="w-1/2 ">
-            <img src="../assets/POOGER.png" alt="Pooger-img" class="object-contain h-screen ">
+        <div class="w-1/2 bg-quinary">
+            <img src="../assets/POOGER.png" alt="Pooger-img" class="object-contain h-screen">
         </div>
-
-
         <div class="w-1/2 my-auto">
             <div class="h-auto">
-                <h1 class="flex justify-center  text-black font-montserrat text-xl font-bold text-ellipsis">
+                <h1 class="flex justify-center text-black font-montserrat text-xl font-bold text-ellipsis">
                     Se connecter
                 </h1>
                 <form @submit.prevent="getUser">
                     <div class="mb-6">
-                        <label for="username" class="block text-lg font-semibold mb-2">Nom d'utilisateur</label>
+                        <label for="username" class="block text-lg font-semibold font-montserrat mb-2">Nom
+                            d'utilisateur</label>
                         <input v-model="username" type="text" id="username"
                             class="w-full border font-montserrat border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-pastel-blue" />
                     </div>
                     <div class="mb-6">
-                        <label for="password" class="block text-lg font-semibold mb-2">Email</label>
+                        <label for="password" class="block text-lg font-semibold font-montserrat mb-2">Email</label>
                         <input v-model="email" type="text" id="email"
                             class="w-full border font-montserrat border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-pastel-blue" />
                     </div>
@@ -35,17 +34,17 @@
     </div>
 </template>
 
-<script setup >
-import * as Vue from 'vue'
-import { ref, onBeforeMount } from 'vue'
+<script setup>
+import { ref } from 'vue'
 import axios from 'axios'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
+const router = useRouter()
 
 const username = ref('')
 const email = ref('')
-const router = useRouter()
-const route = useRoute()
 
 
 const goToRegister = () => {
@@ -63,10 +62,8 @@ async function getUser() {
         } else {
         }
     } catch (error) {
+        createToast('Identifiant ou mot de passe incorrect', { transition: 'slide', type: 'danger', timeout: 2000 })
         console.error(error)
     }
 }
-
-
-
 </script>
