@@ -21,7 +21,7 @@
                     <li class="mr-12 flex items-center ml-5 font-montserrat text-black hover:text-white">
                         <RouterLink :to="`/clock/${userid}`">ClockManager</RouterLink>
                     </li>
-                    <li class="mr-12 flex items-center ml-5 font-montserrat text-black hover:text-white     ">
+                    <li class="mr-12 flex items-center ml-5 font-montserrat text-black hover:text-white">
                         <RouterLink :to="`/workingtime/${userid}`">Créer un temps de travail</RouterLink>
                     </li>
                 </ul>

@@ -1,31 +1,23 @@
 <template>
-    <div>
+    <div class="p-4 bg-white shadow rounded-lg">
+        <div class="flex justify-between mb-4">
+            <div class="font-semibold">Date de début</div>
+            <div class="font-semibold">Date de fin</div>
+            <div class="font-semibold">Actions</div>
+        </div>
         <div v-if="workData.value && workData.value.length > 0">
-            <div v-for="(work, index) in workData.value" :key="index" class="work-entry flex flex-row gap-5">
-                <div class="start">
-                    Start: {{ work.start }}
+            <div v-for="(work, index) in workData.value" :key="index"
+                class="flex justify-between items-center py-2 border-b text-black hover:text-red-500">
+                <div>{{ work.start }}</div>
+                <div>{{ work.end }}</div>
+                <div>
+                    <RouterLink :to="`/workingtime/${userId}/${work.id}`" class="text-blue-500">Settings</RouterLink>
                 </div>
-                <div class="end">
-                    End: {{ work.end }}
-                </div>
-                <li class="mx-2 flex items-center">
-                    <RouterLink :to="`/workingtime/${userId}/${work.id}`">Settings</RouterLink>
-                </li>
             </div>
         </div>
         <div v-else>
-            <p>Chargement des données...</p>
+            <p class="mt-4 text-center">Chargement des données...</p>
         </div>
-
-        <ModifyModal v-if="ModifyModalOpen" :title="'Modify WorkingTime'" @close="closeModifyModalOpen"
-            @modify="modifyWorkingTime">
-            <div>
-                <input v-model="formattedStartDate" type="text" placeholder="Start Date"
-                    class="mb-2 p-2 rounded border border-gray-300 mt-2">
-                <input v-model="formattedEndDate" type="text" placeholder="End Date"
-                    class="p-2 rounded border border-gray-300">
-            </div>
-        </ModifyModal>
     </div>
 </template>
   
@@ -93,7 +85,7 @@ const modifyWorkingTime = async () => {
 
         const body = {
             working_time: {
-                start:formattedStartDate,
+                start: formattedStartDate,
                 end: formattedEndDate
             }
         };

@@ -6,6 +6,7 @@ import Settings from "../pages/Settings.vue";
 import WorkingTimes from "../pages/Workingtimes.vue";
 import WorkingTime from "../pages/Workingtime.vue";
 import ClockManager from "../pages/ClockManager.vue";
+import Faq from "../pages/FAQPage.vue"; 
 
 
 const router = createRouter({
@@ -51,6 +52,11 @@ const router = createRouter({
       name: 'clock',
       component: ClockManager
     },
+    {
+      path: '/FAQ',
+      name: 'faq',
+      component: Faq
+    }
   ]
 });
 

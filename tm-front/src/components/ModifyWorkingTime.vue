@@ -7,10 +7,12 @@
         <slot></slot>
       </div>
       <div class="flex justify-end">
-        <button @click="modifyWT" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-pastel-blue m-1">
+        <button @click="modifyWT"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-pastel-blue m-1">
           Modifier
         </button>
-        <button @click="closeModal" class="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-pastel-blue m-1">
+        <button @click="closeModal"
+          class="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-pastel-blue m-1">
           Fermer
         </button>
       </div>

@@ -1,38 +1,45 @@
 <template>
   <div>
     <div v-if="workData">
-      <div class="work-entry flex flex-row gap-5">
-        <div class="start">
-          Start: {{ workData.start }}
-        </div>
-        <div class="end">
-          End: {{ workData.end }}
-        </div>
-        <button @click="deleteWorkingTime(workData.id)" class="suppr">
-          Supprimer
-        </button>
-        <button v-if="workData.id" @click="openModifyModal(workData)" class="suppr">
-          Modifier
-        </button>
-      </div>
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr>
+            <th class="py-2 font-semibold border-b">Date de début</th>
+            <th class="py-2 font-semibold border-b">Date de fin</th>
+            <th class="py-2 font-semibold border-b">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-if="workData.id" class="work-entry border-b">
+            <td class="start py-2">{{ workData.start }}</td>
+            <td class="end py-2">{{ workData.end }}</td>
+            <td class="py-2">
+              <button @click="deleteWorkingTime(workData.id)" class="suppr hover:text-red-500">Supprimer/</button>
+              <button @click="openModifyModal(workData)" class="suppr hover:text-blue-500"> Modifier</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <p v-else-if="loading">Chargement des données...</p>
-    <p v-else>
-      <button @click="openCreateModal" class="suppr">
-        Créer Working Time
-      </button>
+    <p v-else-if="loading" class="text-center mt-4">Chargement des données...</p>
+    <p v-else class="text-center mt-4">
+      <button @click="openCreateModal" class="suppr">Créer Working Time</button>
     </p>
 
-    <ModifyModal v-if="ModifyModalOpen" :title="'Modify WorkingTime'" @close="closeModifyModalOpen" @modify="updateWorkingTime">
+    <ModifyModal v-if="ModifyModalOpen" :title="'Modify WorkingTime'" @close="closeModifyModalOpen"
+      @modify="updateWorkingTime">
       <div>
-        <input v-model="formattedStartDate" type="text" placeholder="Start Date" class="mb-2 p-2 rounded border border-gray-300 mt-2">
+        <input v-model="formattedStartDate" type="text" placeholder="Start Date"
+          class="mb-2 p-2 rounded border border-gray-300 mt-2">
         <input v-model="formattedEndDate" type="text" placeholder="End Date" class="p-2 rounded border border-gray-300">
       </div>
     </ModifyModal>
 
-    <CreateModal v-if="CreateModalOpen" :title="'Create WorkingTime'" @close="closeCreateModal" @create="createWorkingTime">
+    <CreateModal v-if="CreateModalOpen" :title="'Create WorkingTime'" @close="closeCreateModal"
+      @create="createWorkingTime">
       <div class="flex flex-col">
-        <input v-model="createStartDate" type="text" placeholder="Start Date" class="mb-2 p-2 rounded border border-gray-300 mt-2">
+        <input v-model="createStartDate" type="text" placeholder="Start Date"
+          class="mb-2 p-2 rounded border border-gray-300 mt-2">
         <input v-model="createEndDate" type="text" placeholder="End Date" class="p-2 rounded border border-gray-300">
       </div>
     </CreateModal>
@@ -142,10 +149,11 @@ const updateWorkingTime = async () => {
 const createWorkingTime = async () => {
   try {
     const newWorkingTimeData = {
-    working_time: {
-      start: createStartDate.value,
-      end: createEndDate.value
-    }};
+      working_time: {
+        start: createStartDate.value,
+        end: createEndDate.value
+      }
+    };
     const response = await axios.post(`http://localhost:4000/api/workingtimes/${userId}`, newWorkingTimeData);
     if (response.status === 201) {
       ('La création a réussi', response);

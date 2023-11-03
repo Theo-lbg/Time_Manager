@@ -1,17 +1,24 @@
 <template>
-    <div>
-        <div class="start" v-if="clockIn">
-            <div class="time">
-                Tu as commencé à pointer à : {{ lastClockData ? formatDateTime(lastClockData.time) : 'Heure de début' }}
+    <div class="flex items-center justify-center h-screen">
+        <div class="max-w-md mx-auto p-8 border rounded-lg bg-white shadow-lg ">
+            <div v-if="clockIn">
+                <div class="text-center mb-4">
+                    <div class="font-semibold text-xl">
+                        Tu as commencé à pointer à :
+                    </div>
+                    <div class="text-xl">
+                        {{ lastClockData ? formatDateTime(lastClockData.time) : 'Heure de début' }}
+                    </div>
+                </div>
+                <button @click="clock" class="block mx-auto bg-red-500 text-white font-bold py-2 px-4 rounded">
+                    Terminer mon pointage
+                </button>
             </div>
-            <button @click="clock" class="bg-red-500">
-                Terminer mon pointage
-            </button>
-        </div>
-        <div class="end" v-else>
-            <button @click="clock" class="bg-green-500">
-                Commencer mon pointage
-            </button>
+            <div v-else>
+                <button @click="clock" class="block mx-auto bg-green-500 text-white font-bold py-2 px-4 rounded">
+                    Commencer mon pointage
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -21,6 +28,9 @@ import { ref, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 import { format } from 'date-fns';
+
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
 const router = useRouter();
 
@@ -74,6 +84,7 @@ async function clock() {
                         working_time: workingTime
                     });
                     if (response.status === 201) {
+                        createToast('Pointage terminé !', { type: 'success', timeout: 2000, transition: 'slide' });
                     } else {
                         console.error("Requête POST de fin a échoué", response);
                     }

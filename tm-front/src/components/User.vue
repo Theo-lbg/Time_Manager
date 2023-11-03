@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="infos">
-      <div class="infos-name"> Username : {{ name }} </div>
-      <div class="infos-email"> Email : {{ email }}</div>
+      <div class="infos-name"> Votre Username : {{ name }} </div>
+      <div class="infos-email"> Votre Email : {{ email }}</div>
 
     </div>
     <div class="flex flex-col">
@@ -12,9 +12,7 @@
   
 <script setup >
 import { ref, onBeforeMount } from 'vue';
-import { logout } from '@/assets/utils.js';
-import { useRoute, useRouter } from 'vue-router'
-import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 
 const name = ref("");

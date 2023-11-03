@@ -7,7 +7,7 @@ module.exports = {
         primary: '#EE74DA',
         secondary: '#403F4C',
         ternary: '#51E5FF',
-        quaternary: '#fafafa',
+        quaternary: '#403F4C',
         quinary: '#fafbf9'
       },
       fontFamily: {
