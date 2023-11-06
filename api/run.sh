@@ -1,10 +1,10 @@
 # If exeist delete the file mix.lock
 
 # Check if the .env file exists
-if [ ! -f ".env" ]; then
-  echo "Please create a .env file, with the same value as .env.example"
-  exit 1
-fi
+# if [ ! -f ".env" ]; then
+#   echo "Please create a .env file, with the same value as .env.example"
+#   exit 1
+# fi
 
 # Delete the mix.lock file to avoid problems with the docker container
 if [ -f "mix.lock" ]; then
